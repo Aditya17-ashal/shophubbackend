@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: shophub-backend
+    env: java
+    buildCommand: "./render-build.sh"
+    startCommand: "java -jar target/shophubbackend-0.0.1-SNAPSHOT.jar"
+    plan: free
+    envVars:
+      - key: JAVA_TOOL_OPTIONS
+        value: "-XX:+UseContainerSupport -Xmx512m"
+      - key: SERVER_PORT
+        value: "10000"
+      - key: SPRING_PROFILES_ACTIVE
+        value: "prod"
+    healthCheckPath: "/actuator/health"
